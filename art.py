@@ -4,9 +4,14 @@ from scipy.spatial import Delaunay
 import streamlit as st
 import matplotlib.pyplot as plt
 from PIL import Image
+from css.custom_css import fade_in, footer_icons
+
+fade_in() # Load fade in animation from custom_css
+
 
 # Get user input
 with st.sidebar:
+
     st.header('Art with Triangulation!')
 
     lower_thresh = st.slider('Lower Threshold', 0, 200, 40)
@@ -29,6 +34,9 @@ with st.sidebar:
     if img_file_buffer is not None:
         image = Image.open(img_file_buffer)
         img = np.array(image) # if you want to pass it to OpenCV
+
+    footer_icons()  # Load footer icons from custom_css
+
 
 if img_file_buffer:
 

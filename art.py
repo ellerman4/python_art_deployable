@@ -70,7 +70,7 @@ if img_file_buffer:
     plt.savefig("./output/test.png", dpi = 600, transparent=True)
 
     st.header('Delaunay Triangulation Image 📸')    # Write header with cute emoji 📸
-    mutable_img = Image.open("./output/test.png")   # Open the saved figure 
+    mutable_img = Image.open("./output/test.png")   # Open the saved figure
 
     # Options for image modifications
     if black_white:

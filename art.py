@@ -3,8 +3,7 @@ import numpy as np
 from scipy.spatial import Delaunay
 import streamlit as st
 import matplotlib.pyplot as plt
-from PIL import Image, ImageFilter, ImageEnhance
-
+from PIL import Image
 
 # Get user input
 with st.sidebar:
@@ -30,7 +29,6 @@ with st.sidebar:
     if img_file_buffer is not None:
         image = Image.open(img_file_buffer)
         img = np.array(image) # if you want to pass it to OpenCV
-
 
 if img_file_buffer:
 
@@ -84,13 +82,14 @@ if img_file_buffer:
 
 
     # Display the final image
-    st.image(mutable_img)
+    final_image = st.image(mutable_img)
 
     # Custom css for gradient background colors
     if gradient_cb:
+        gradient_type = st.selectbox('Gradient Style', ('Radial', 'Linear'))
         shadow_blur = st.slider('Inner Shadow Blur', 0, 200, 40)
         st.markdown(
-            f'''<style> .css-1v0mbdj {{ background-image: linear-gradient({color1}, {color2});
+            f'''<style> .css-1v0mbdj {{ background-image: {gradient_type}-gradient({color1}, {color2});
                                         box-shadow: inset 0 0 {shadow_blur}px #000000; }} </style>''',
                 unsafe_allow_html=True
             )
@@ -102,9 +101,9 @@ if img_file_buffer:
             unsafe_allow_html=True
             )
 
+
     # Display Canny Edge Detection Image
     st.header('Edge Detection Image')
     st.markdown('Adjust threshold variables for desired output')
     st.image(imS)
 
-    

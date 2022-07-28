@@ -88,9 +88,11 @@ if img_file_buffer:
 
     # Custom css for gradient background colors
     if gradient_cb:
+        shadow_blur = st.slider('Inner Shadow Blur', 0, 200, 40)
         st.markdown(
-            f'<style> .css-1v0mbdj {{ background-image: linear-gradient({color1}, {color2}); }} </style>',
-            unsafe_allow_html=True
+            f'''<style> .css-1v0mbdj {{ background-image: linear-gradient({color1}, {color2});
+                                        box-shadow: inset 0 0 {shadow_blur}px #000000; }} </style>''',
+                unsafe_allow_html=True
             )
 
     # Custom css for gradient hue
@@ -104,3 +106,5 @@ if img_file_buffer:
     st.header('Edge Detection Image')
     st.markdown('Adjust threshold variables for desired output')
     st.image(imS)
+
+    
